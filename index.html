@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Dilisha — Valentine</title>
+  <meta name="description" content="A cute Valentine website for Dilisha." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Animated background layer -->
+  <div class="bg">
+    <canvas id="heartsCanvas" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-title">Valentine</span>
+    </div>
+
+    <div class="top-actions">
+      <button class="chip" id="toggleMotion" type="button" aria-pressed="false" title="Toggle motion effects">
+        Motion: On
+      </button>
+      <button class="chip" id="openLetter" type="button" title="Open the letter">
+        Open letter
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero card reveal">
+      <div class="hero-left">
+        <p class="pill">A small page made with love</p>
+        <h1 class="title">
+          Dilisha,
+          <span class="title-accent">will you be my Valentine?</span>
+        </h1>
+
+        <p class="subtitle">
+          I made this for you because you make ordinary days feel special.
+          Every moment with you feels like a soft, warm promise.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" id="btnYes" type="button">
+            Yes
+          </button>
+          <button class="btn btn-ghost" id="btnNo" type="button">
+            Not sure
+          </button>
+        </div>
+
+        <div class="meta">
+          <div class="meta-item">
+            <div class="meta-label">Today feels like</div>
+            <div class="meta-value" id="typeLine"></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Countdown</div>
+            <div class="meta-value" id="countdown">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Decorative "glass photo" (replace with your image if you want) -->
+        <div class="portrait">
+          <div class="portrait-inner">
+            <div class="portrait-badge">For Dilisha</div>
+
+            <!-- SVG heart to avoid emoji -->
+            <svg class="big-heart" viewBox="0 0 64 64" role="img" aria-label="Heart icon">
+              <path d="M32 56s-18-11.9-26.1-23C-1.7 22.9 4.9 8 19.3 8c6.1 0 10.2 3.4 12.7 7.1C34.5 11.4 38.6 8 44.7 8 59.1 8 65.7 22.9 58.1 33 50 44.1 32 56 32 56z"/>
+            </svg>
+
+            <div class="sparkles" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="mini-cards">
+          <article class="mini reveal">
+            <h3>Three little promises</h3>
+            <ul>
+              <li>More patience, always.</li>
+              <li>More laughter, every week.</li>
+              <li>More time, intentionally.</li>
+            </ul>
+          </article>
+
+          <article class="mini reveal">
+            <h3>A note for you</h3>
+            <p>
+              If love had a color, it would look like this page: soft, glowing,
+              and impossible to ignore.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- REASONS -->
+    <section class="grid">
+      <article class="card reveal">
+        <h2 class="h2">Reasons I adore you</h2>
+        <div class="reasons">
+          <div class="reason">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h4>Your smile</h4>
+              <p>It changes the mood of the whole room.</p>
+            </div>
+          </div>
+          <div class="reason">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h4>Your kindness</h4>
+              <p>Quiet, real, and unforgettable.</p>
+            </div>
+          </div>
+          <div class="reason">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h4>Your presence</h4>
+              <p>Everything feels calmer when you’re near.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint">
+          You can edit these lines in <code>index.html</code> to make them personal.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <h2 class="h2">A tiny “love meter”</h2>
+        <p class="muted">It’s scientific (not really).</p>
+
+        <div class="meter">
+          <div class="meter-top">
+            <span>Love level</span>
+            <span id="meterValue">0%</span>
+          </div>
+          <div class="meter-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="meter-fill" id="meterFill"></div>
+          </div>
+          <button class="btn btn-secondary" id="boostLove" type="button">Boost</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer reveal">
+      <p>
+        Made for <strong>Dilisha</strong>. If you want, I can help you add your photos,
+        a music button, or a custom message popup.
+      </p>
+    </footer>
+  </main>
+
+  <!-- Letter Modal -->
+  <dialog class="modal" id="letterModal" aria-labelledby="letterTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="letterTitle">A letter for Dilisha</h2>
+        <button class="icon-btn" id="closeLetter" type="button" aria-label="Close letter">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="letter">
+        <p class="letter-line"><strong>Dilisha,</strong></p>
+        <p class="letter-line">
+          I love the way you exist in the world — gently, beautifully, and with so much heart.
+          If you say yes, I promise to keep choosing you, in the little moments and the big ones.
+        </p>
+        <p class="letter-line">
+          Be my Valentine?
+        </p>
+        <p class="letter-sign">— Yours</p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modalYes" type="button">Yes</button>
+        <button class="btn btn-ghost" id="modalClose" type="button">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
